@@ -1,0 +1,19 @@
+{
+	"name": "bea-posts-status-admin",
+	"version": "1.0.0",
+	"repository" : { 
+		"type" : "git",
+		"url" : "https://github.com/Rahe/bea-post-status-admin.git"
+	},
+	"description": "Bea post status admin for WordPress",
+	"author": "Nicolas Juen",
+	"devDependencies": {
+		"gulp": "^3.8.1",
+		"gulp-concat": "~2.2.0",
+		"gulp-load-plugins": "^0.5.2",
+		"gulp-uglify": "~0.2.1",
+		"gulp-watch": "~0.6.8",
+		"gulp-jshint" : "~1.9.0",
+		"matchdep": "*"
+	}
+}
