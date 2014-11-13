@@ -1,8 +1,11 @@
-jQuery(function(){
+jQuery(function(){ 'use strict';
+	if( _.isUndefined( bea_post_status_vars ) ) {
+		return;
+	}
+
 	var status_dropdown = jQuery( "select#post_status" ),
 		status_label = jQuery( "#post-status-display" ),
-		button_save = jQuery( "#save-post" ),
-		button_publish = jQuery( '#publish' ),
+		button_save = jQuery( "#save-post, #publish" ),
 		selected = false,
 		statuses = _.pluck( bea_post_status_vars.statuses, 'name' );
 
@@ -15,7 +18,7 @@ jQuery(function(){
 	} );
 
 	// Initial values set
-	if( false !== selected) {
+	if( false !== selected ) {
 		status_dropdown.find( '[value="'+selected.name+'"]' ).attr( 'selected', 'selected' );
 		status_label.html( selected.label );
 	}
@@ -34,14 +37,9 @@ jQuery(function(){
 	 * @param value
 	 */
 	function change_save_text( value ) {
-		if( _.contains( statuses, value ) ) {
+		if( !_.contains( statuses, value ) ) {
 			return;
 		}
-
-		if( 'publish' === bea_post_status_vars.post_status ) {
-			button_publish.val(_.findWhere(bea_post_status_vars.statuses, {name: value}).action);
-		} else {
-			button_save.val(_.findWhere(bea_post_status_vars.statuses, {name: value}).action);
-		}
+		button_save.val(_.findWhere(bea_post_status_vars.statuses, {name: value}).action);
 	}
 });

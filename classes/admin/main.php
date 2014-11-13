@@ -25,6 +25,7 @@ class Bea_Post_Status_Admin{
 	*/
 	public static function admin_init() {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG === true ? '' : '.min' ;
+
 		// Add the script
 		wp_register_script( 'bea-post-status-admin', BEA_PSA_URL.'assets/js/admin'.$suffix.'.js', array( 'jquery', 'underscore' ), BEA_PSA_VERSION, true );
 	}
@@ -60,7 +61,7 @@ class Bea_Post_Status_Admin{
 		$statuses = Bea_Post_Status_Client::get_statuses();
 
 		$screen = get_current_screen();
-		if( $screen->parent_base !== 'edit' ) {
+		if( 'edit' !== $screen->parent_base || 'post' !== $screen->base ) {
 			return false;
 		}
 
