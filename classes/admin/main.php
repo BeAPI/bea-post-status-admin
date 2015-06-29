@@ -1,6 +1,6 @@
 <?php
 namespace BEA\PSA\Admin;
-use \BEA\PSA\Client as Client;
+use \BEA\PSA\Main as Client;
 
 class Main{
 
