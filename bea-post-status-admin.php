@@ -1,15 +1,16 @@
 <?php
 /*
  Plugin Name: BEA Post status admin
- Version: 1.0.1
+ Version: 2.0
  Description: Add the custom post status admin interface
  Author: Be Api
  Author URI: http://www.beapi.fr
+Plugin URI: https://github.com/Beapi/bea-post-status-admin
  Domain Path: languages
- Text Domain: bea-custom-post-status
+ Text Domain: bea-post-status-admin
  ----
 
- Copyright 2014 Beapi (technique@beapi.fr)
+ Copyright 2014 Beapi (human@beapi.fr)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -31,36 +32,36 @@ if ( !defined('ABSPATH') )
 	die('-1');
 
 // Plugin constants
-define( 'BEA_PSA_VERSION', '1.0.1' );
+define( 'BEA_PSA_VERSION', '2.0' );
+define( 'BEA_PSA_MIN_PHP_VERSION', '5.4' );
 
 // Plugin URL and PATH
 define('BEA_PSA_URL', plugin_dir_url ( __FILE__ ));
 define('BEA_PSA_DIR', plugin_dir_path( __FILE__ ));
 
-// Function for easy load files
-function _bea_psa_load_files( $dir, $files, $prefix = '' ) {
-	foreach ( $files as $file ) {
-		if ( is_file( $dir . $prefix . $file . ".php" ) ) {
-			require_once( $dir . $prefix . $file . ".php" );
-		}
-	}
+// Check PHP min version
+if ( version_compare( PHP_VERSION, BEA_PSA_MIN_PHP_VERSION, '<' ) ) {
+	require_once( BEA_PSA_DIR . 'compat.php' );
+
+	// possibly display a notice, trigger error
+	add_action( 'admin_init', array( 'BEA\PSA\Compatibility', 'admin_init' ) );
+
+	// stop execution of this file
+	return;
 }
 
-// Client API
-_bea_psa_load_files( BEA_PSA_DIR . 'classes/', array( 'main' ) );
-
-// Plugin admin classes
-if ( is_admin() ) {
-	_bea_psa_load_files( BEA_PSA_DIR . 'classes/admin/', array( 'main' ) );
-}
+/**
+ * Autoload all the things \o/
+ */
+require BEA_PSA_DIR.'autoload.php';
 
 add_action('plugins_loaded', 'init_bea_psa_plugin');
 function init_bea_psa_plugin() {
 	// Add the API
-	new Bea_Post_Status_Client();
+	new \BEA\PSA\Main();
 
 	if ( is_admin() ) {
 		// Launch admin
-		new Bea_Post_Status_Admin();
+		new \BEA\PSA\Admin\Main();
 	}
 }

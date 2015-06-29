@@ -1,5 +1,8 @@
 <?php
-class Bea_Post_Status_Admin{
+namespace BEA\PSA\Admin;
+use \BEA\PSA\Client as Client;
+
+class Main{
 
 	/**
 	 * statuses registered
@@ -42,7 +45,7 @@ class Bea_Post_Status_Admin{
 	public static function display_post_states( $posts_states, $post ) {
 
 		// Get all the statuses
-		$statuses = Bea_Post_Status_Client::get_statuses();
+		$statuses = Client::get_statuses();
 
 		if( isset( $statuses[$post->post_status] ) ) {
 			$post_status = get_post_status_object( $post->post_status );
@@ -58,7 +61,7 @@ class Bea_Post_Status_Admin{
 	 */
 	public static function add_post_status() {
 		// Get all the statuses
-		$statuses = Bea_Post_Status_Client::get_statuses();
+		$statuses = Client::get_statuses();
 
 		$screen = get_current_screen();
 		if( 'edit' !== $screen->parent_base || 'post' !== $screen->base ) {

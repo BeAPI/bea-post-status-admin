@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"repository" : { 
 		"type" : "git",
-		"url" : "https://github.com/Rahe/bea-post-status-admin.git"
+		"url" : "https://github.com/Beapi/bea-post-status-admin.git"
 	},
 	"description": "Bea post status admin for WordPress",
 	"author": "Nicolas Juen",

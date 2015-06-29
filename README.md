@@ -19,13 +19,13 @@ function init_post_status() {
 			'label_count'               => _n_noop( 'Refused <span class="count">(%s)</span>', 'Refused <span class="count">(%s)</span>' ),
 		) );
 
-	// Add the postt_status admin inerface
-	if( class_exists( 'Bea_Post_Status_Client' ) ) {
+	// Add the post_status admin interface
+	if( class_exists( '\BEA\PSA\Main' ) ) {
 		/**
 			Here you can add the post status to a post type and choose the submit button text if you choose the 
 			post_status on the select.
 		*/
-		Bea_Post_Status_Client::register_status( 'refused', array( "post" ), 'Refuse the post' );
+		\BEA\PSA\Main::register_status( 'refused', array( "post" ), 'Refuse the post' );
 	}
 }```
 

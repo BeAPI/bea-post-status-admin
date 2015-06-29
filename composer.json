@@ -1,0 +1,16 @@
+{
+  "name": "bea/post-status-admin",
+  "description": "Add the custom post status admin interface",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Nicolas Juen",
+      "email": "njuen@beapi.fr"
+    }
+  ],
+  "type" : "wordpress-plugin",
+  "require" : {
+    "composer/installers" : "~1.0"
+  }
+}

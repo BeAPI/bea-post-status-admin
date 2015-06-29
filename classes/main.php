@@ -1,14 +1,13 @@
 <?php
-class Bea_Post_Status_Client{
+namespace BEA\PSA;
+
+class Main{
 
 	/**
 	 * Post statuses to add
 	 * @var array
 	 */
 	private static $statuses = array();
-
-	function __construct() {
-	}
 
 	/**
 	 * Add the post_status
