@@ -5,7 +5,7 @@ jQuery(function(){ 'use strict';
 
 	var status_dropdown = jQuery( "select#post_status" ),
 		status_label = jQuery( "#post-status-display" ),
-		button_save = jQuery( "#save-post, #publish" ),
+		button_save = jQuery( "#save-post" ),
 		selected = false,
 		statuses = _.pluck( bea_post_status_vars.statuses, 'name' );
 
@@ -29,6 +29,12 @@ jQuery(function(){ 'use strict';
 	// On status change, then change the different texts
 	jQuery( '#submitpost' ).on( 'click', '.save-post-status', function() {
 		change_save_text( status_dropdown.val() );
+	} )
+	/**
+	 * On click on the cancel button, change it
+	 */
+	.on( 'click', '.cancel-post-status',function () {
+		change_save_text( jQuery('#hidden_post_status').val() );
 	} );
 
 	/**
