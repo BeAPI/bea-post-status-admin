@@ -1,13 +1,33 @@
 <?php
 namespace BEA\PSA;
+use BEA\PSA\Traits\Singleton;
 
 class Main{
+
+	/**
+	 * Add the singleton for the class
+	 */
+	use Singleton;
 
 	/**
 	 * Post statuses to add
 	 * @var array
 	 */
 	private static $statuses = array();
+
+	/**
+	 * On Class construct
+	 */
+	protected function init() {
+		add_action( 'init', array( __CLASS__, 'init_register' ), 99 );
+	}
+
+	/**
+	 * Allow third party to add the post_status
+	 */
+	public static function init_register() {
+		do_action( 'bea/psa/register', self::get_instance() );
+	}
 
 	/**
 	 * Add the post_status

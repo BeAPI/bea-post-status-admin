@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: BEA Post status admin
- Version: 2.0.1
+ Version: 2.0.2
  Description: Add the custom post status admin interface
  Author: Be Api
  Author URI: http://www.beapi.fr
@@ -32,7 +32,7 @@ if ( !defined('ABSPATH') )
 	die('-1');
 
 // Plugin constants
-define( 'BEA_PSA_VERSION', '2.0.1' );
+define( 'BEA_PSA_VERSION', '2.0.2' );
 define( 'BEA_PSA_MIN_PHP_VERSION', '5.4' );
 
 // Plugin URL and PATH
@@ -58,10 +58,10 @@ require BEA_PSA_DIR.'autoload.php';
 add_action('plugins_loaded', 'init_bea_psa_plugin');
 function init_bea_psa_plugin() {
 	// Add the API
-	new \BEA\PSA\Main();
+	\BEA\PSA\Main::get_instance();
 
 	if ( is_admin() ) {
 		// Launch admin
-		new \BEA\PSA\Admin\Main();
+		\BEA\PSA\Admin\Main::get_instance();
 	}
 }

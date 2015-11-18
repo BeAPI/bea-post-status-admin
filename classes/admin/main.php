@@ -1,8 +1,14 @@
 <?php
 namespace BEA\PSA\Admin;
 use \BEA\PSA\Main as Client;
+use BEA\PSA\Traits\Singleton;
 
 class Main{
+
+	/**
+	 * Add the singleton
+	 */
+	Use Singleton;
 
 	/**
 	 * statuses registered
@@ -11,7 +17,7 @@ class Main{
 	 */
 	private static $statuses = array();
 
-	function __construct() {
+	protected function init() {
 		// Add the filters
 		add_filter( 'display_post_states', array( __CLASS__, 'display_post_states' ), 1, 2 );
 		add_action( 'admin_footer', array( __CLASS__, 'add_post_status' ) );
