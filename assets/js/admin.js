@@ -7,11 +7,12 @@ jQuery(function(){ 'use strict';
 		status_label = jQuery( "#post-status-display" ),
 		button_save = jQuery( "#save-post" ),
 		selected = false,
-		statuses = _.pluck( bea_post_status_vars.statuses, 'name' );
+		statuses = _.pluck( bea_post_status_vars.statuses, 'name'),
+    template = _.template( "<option value='<%- value %>'><%- label %></option>");
 
 	// Add the post_statuses to the admin dropdown
 	_.each( bea_post_status_vars.statuses, function( status ) {
-		status_dropdown.append( _.template( "<option value='<%- value %>'><%- label %></option>", { value : status.name, label :status.label } ));
+		status_dropdown.append( template( { value : status.name, label :status.label } ));
 		if( bea_post_status_vars.post_status === status.name ) {
 			selected = status;
 		}
