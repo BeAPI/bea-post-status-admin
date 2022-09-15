@@ -43,7 +43,7 @@ trait Singleton {
 	 *
 	 * @return void
 	 */
-	final private function __clone() {
+	private function __clone() {
 	}
 
 	/**
@@ -51,6 +51,6 @@ trait Singleton {
 	 *
 	 * @return void
 	 */
-	final private function __wakeup() {
+	public function __wakeup() {
 	}
 }
