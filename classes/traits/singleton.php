@@ -52,5 +52,6 @@ trait Singleton {
 	 * @return void
 	 */
 	public function __wakeup() {
+		throw new \Exception( 'Cannot serialize singleton' );
 	}
 }
